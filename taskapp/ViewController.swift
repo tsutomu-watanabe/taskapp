@@ -6,6 +6,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 {
     
     @IBOutlet weak var tableView: UITableView!
+    
     // Realmインスタンスを取得する
     let realm = try! Realm()
     
