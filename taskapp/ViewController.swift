@@ -2,10 +2,11 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate
 {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     // Realmインスタンスを取得する
     let realm = try! Realm()
@@ -20,7 +21,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
+        
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+        .filter("category == %@", searchText)
+        tableView.reloadData()
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -8,7 +8,7 @@ class Task: Object {
     @objc dynamic var title = ""
     
     // カテゴリー
-    @objc dynamic var category: String? = ""
+    @objc dynamic var category = ""
     
     // 内容
     @objc dynamic var contents = ""
